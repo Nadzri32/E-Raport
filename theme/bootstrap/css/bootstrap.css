@@ -128,9 +128,12 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  -webkit-appearance: button;
-  cursor: pointer;
+  -webkit-appearance: button; /* Vendor prefix untuk WebKit */
+  -moz-appearance: button;    /* Vendor prefix untuk Firefox */
+  appearance: button;         /* Properti standar */
+  cursor: pointer;            /* Menetapkan kursor sebagai pointer */
 }
+
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -155,15 +158,19 @@ input[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 input[type="search"] {
-  -webkit-box-sizing: content-box;
-     -moz-box-sizing: content-box;
-          box-sizing: content-box;
-  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box; /* Vendor prefix untuk WebKit */
+     -moz-box-sizing: content-box; /* Vendor prefix untuk Firefox */
+          box-sizing: content-box; /* Properti standar */
+  -webkit-appearance: textfield;   /* Membuat input terlihat seperti field teks */
+  appearance: textfield;           /* Properti standar */
 }
+
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+  -webkit-appearance: none; /* Menghapus gaya bawaan WebKit */
+  appearance: none;         /* Properti standar */
 }
+
 fieldset {
   padding: .35em .625em .75em;
   margin: 0 2px;
@@ -2597,8 +2604,10 @@ fieldset[disabled] .form-control {
 textarea.form-control {
   height: auto;
 }
-input[type="search"] {
-  -webkit-appearance: none;
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; /* Menghapus gaya bawaan WebKit */
+  appearance: none;         /* Properti standar */
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   input[type="date"].form-control,
@@ -5858,6 +5867,7 @@ button.list-group-item-danger.active:focus {
 }
 button.close {
   -webkit-appearance: none;
+  appearance: none;
   padding: 0;
   cursor: pointer;
   background: transparent;
