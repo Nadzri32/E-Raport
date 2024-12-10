@@ -1,4 +1,13 @@
-<?php date_default_timezone_set('Asia/Jakarta');$date=date('Y-m-d'); require '../php/config.php'; require '../php/function.php'; session_start(); if(empty($_SESSION['c_admin'])){header('location:../login');} $na=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM admin where c_admin='$_SESSION[c_admin]' ")); //$setting=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM setting limit 1 "));*/ ?>
+<?php date_default_timezone_set('Asia/Jakarta');
+$date=date('Y-m-d'); 
+require '../php/config.php'; 
+require '../php/function.php'; 
+session_start(); 
+if(empty($_SESSION['c_admin'])){
+  header('location:../login');
+} 
+$na=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM admin where c_admin='$_SESSION[c_admin]' "));
+ //$setting=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM setting limit 1 "));*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
