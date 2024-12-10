@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Admin E-RAPORT</title>
-  <link rel="icon" href="favicon.ico">
+  <link rel="icons" href="favicon.ico">
   <link rel="shortcut icon" href="<?php echo $base; ?>imgstatis/logo2.png">
   <script type="text/javascript" src="<?php echo $basead; ?>js/jquery.js"></script>
   <!-- Tell the browser to be responsive to screen width -->
