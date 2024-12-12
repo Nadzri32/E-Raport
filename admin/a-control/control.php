@@ -204,12 +204,21 @@ else{
     $ck=mysqli_fetch_array(mysqli_query($con,"SELECT * from backup where c_backup='$_GET[q]' ")); unlink('../backupdb/'.$ck['file'].'');
     $smk->hapusbackup($con,$_GET['q']);
   }
-  else{
+  else {
+    // Hapus variabel sesi tertentu (opsional, jika perlu)
+    unset($_SESSION['c_admin']);
+
+    // Hapus semua variabel sesi
+    session_unset();
+
+    // Hancurkan sesi
     session_destroy();
-    session_unset($_SESSION['c_admin']);
-    header('location:../../login');
-    //echo "string";
-  }
+
+    // Redirect ke halaman login
+    header('Location: ../../login');
+    exit; // Tambahkan exit untuk memastikan tidak ada kode lain yang dieksekusi
+}
+
 }
 
 function backup_tables($host,$user,$pass,$name,$nama_file,$tables = '*')
@@ -253,12 +262,20 @@ function backup_tables($host,$user,$pass,$name,$nama_file,$tables = '*')
         //menyisipkan query Insert. untuk nanti memasukan data yang lama ketable yang baru dibuat. so toy mode : ON
         for($j=0; $j<$num_fields; $j++) 
         {
-          //akan menelusuri setiap baris query didalam
+          // Akan menelusuri setiap baris query di dalam
           $row[$j] = addslashes($row[$j]);
-          $row[$j] = ereg_replace("\n","\\n",$row[$j]);
-          if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; } else { $return.= '""'; }
-          if ($j<($num_fields-1)) { $return.= ','; }
-        }
+          $row[$j] = str_replace("\n", "\\n", $row[$j]); // Ganti ereg_replace dengan str_replace
+          if (isset($row[$j])) {
+              $return .= '"' . $row[$j] . '"';
+          } else {
+              $return .= '""';
+          }
+          if ($j < ($num_fields - 1)) {
+              $return .= ',';
+          }
+      }
+      
+
         if($i==$hitung)
         {
           $return.=');';
